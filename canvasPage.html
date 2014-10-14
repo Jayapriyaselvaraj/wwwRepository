@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
+		<script> 
+			window.onload = function() {
+				try {
+					var a_canvas = document.getElementById("a");
+  					var a_context = a_canvas.getContext("2d");
+					
+					for(var x = .5; x<500; x+=10) {
+						a_context.moveTo(x, 0);
+						a_context.lineTo(x, 500);
+					}
+					for(var y = .5; y < 500; y+= 10) {
+						a_context.moveTo(0, y);
+						a_context.lineTo(500, y);
+					}
+					
+					a_context.strokeStyle = "#eee";
+					a_context.stroke();
+				
+					//a_context.Rect(100,80,220,160);
+					//a_context.fillStyle()="FFCC00";
+					//a_context.fill();
+					
+					
+					a_context.beginPath();
+					a_context.moveTo(0, 40);
+					a_context.lineTo(500, 40);
+					a_context.moveTo(495, 35);
+					a_context.lineTo(500, 40);
+					a_context.lineTo(495, 45);
+					
+					a_context.moveTo(60, 0);
+					a_context.lineTo(60, 495);
+					a_context.moveTo(55, 490);
+					a_context.lineTo(60, 495);
+					a_context.lineTo(65, 490);
+					
+					a_context.strokeStyle = "#000";
+					a_context.stroke();
+					
+					a_context.moveTo(100, 80);
+					a_context.lineTo(100, 120);
+					a_context.lineTo(120, 120);
+					a_context.lineTo(120, 200);
+					a_context.lineTo(100, 200);
+					a_context.lineTo(100, 240);
+					a_context.lineTo(170, 240);
+					a_context.lineTo(170, 200);
+					a_context.lineTo(150, 200);
+					a_context.lineTo(150, 120);
+					a_context.lineTo(210, 220);
+					a_context.lineTo(270, 120);
+					a_context.lineTo(270, 200);
+					a_context.lineTo(250, 200);
+					a_context.lineTo(250, 240);
+					a_context.lineTo(320, 240);
+					a_context.lineTo(320, 200);
+					a_context.lineTo(300, 200);
+					a_context.lineTo(300, 120);
+					a_context.lineTo(320, 120);
+					a_context.lineTo(320, 80);
+					a_context.lineTo(260, 80);
+					a_context.lineTo(210, 160);
+					a_context.lineTo(160, 80);
+					a_context.lineTo(100, 80);
+					
+					a_context.strokeStyle = "#000000";
+					a_context.stroke();
+					
+					a_context.font = "bold 14px sans-serif";
+					a_context.fillText("MIZZOU Logo below", 100, 20);
+					
+					var mario = document.getElementById("mario");
+					for(x = 0; x < 330; x += 160)
+					{
+						a_context.drawImage(mario, 80+x, 325, 160, 120);
+					}
+					
+					var b_canvas = document.getElementById("b");
+  					var b_context = b_canvas.getContext("2d");
+  					
+  					var gradient = b_context.createLinearGradient(0,0,400,0);
+  					
+  					gradient.addColorStop(0, "red");
+  					gradient.addColorStop(1, "black");
+  					
+  					b_context.fillStyle = gradient;
+  					b_context.fillRect(0,0,400,300);
+					
+				}catch(err) {}
+			}
+		</script>
+	</head>
+	<body>
+	
+		<canvas id="a" height="500" width="500"></canvas>
+		
+		<div>Canvas above has line drawing and images. Below is a gradient</div>
+		
+		<canvas id="b" height="300" width="400"></canvas>
+		
+		<img id="mario" src="mario.png" width="400" height="300" visibility="hidden">
+	</body>
+</html>
