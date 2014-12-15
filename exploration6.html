@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<style>
+
+		svg {
+			float: left;
+			border-bottom: solid 1px #ccc;
+			border-right: solid 1px #ccc;
+			margin-right: -1px;
+			margin-bottom: -1px;
+		}
+
+	</style>
+	<head>
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
+
+		<!--<link rel="stylesheet" type="text/css" href="icon.css">-->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+		<script>
+			window.onload = function() {
+				d3.selectAll("p").style("color", "purple");
+			
+				d3.selectAll("body").style("background-color", function() {	//random background color
+					return "hsl(" + Math.random() * 360 + ",100%,50%)";
+				});
+			
+				d3.selectAll("p").style("color", function(d, i) {
+					return i % 2 ? "#000000" : "#eee";		//alternate paragraph text color with mod statement
+				});
+			
+				d3.selectAll("p")
+					.data([24, 16, 24, 16])//alternate fontsize
+					.style("font-size", function(d) { return d + "px"; });
+				}
+		</script>
+	
+	</head>
+	
+	<body>
+	
+		<script>
+						//code for the draggable .svg elements
+			var width = 240,
+				height = 125,
+				radius = 20;
+
+			var drag = d3.behavior.drag()
+				.origin(function(d) { return d; })
+				.on("drag", dragmove);
+
+			var svg = d3.select("body").append("div").selectAll("svg")
+				.data(d3.range(16).map(function() { return {x: width / 2, y: height / 2}; }))
+			  .enter().append("svg")
+				.attr("width", width)
+				.attr("height", height);
+
+			svg.append("circle")
+				.attr("r", radius)
+				.attr("cx", function(d) { return d.x; })
+				.attr("cy", function(d) { return d.y; })
+				.call(drag);
+
+			function dragmove(d) {
+			  d3.select(this)
+				  .attr("cx", d.x = Math.max(radius, Math.min(width - radius, d3.event.x)))
+				  .attr("cy", d.y = Math.max(radius, Math.min(height - radius, d3.event.y)));
+			}
+
+		</script>
+		
+		
+		<div>
+			<p>This is a paragraph that I am using to test d3js for exploration 6</p>
+		</div>
+		<div>
+			<p>another div</p>
+		</div>
+		<div>
+			<p>another div</p>
+		</div>
+		<div>
+			<p>another div</p>
+		</div>
+		
+	</body>
+</html>
